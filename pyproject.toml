@@ -1,0 +1,60 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "toy-modal"
+version = "0.0.1"
+description = "An open, Tinker-style SDK scaffold backed by user-owned Modal infrastructure."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "Apache-2.0"
+authors = [
+  { name = "toy_modal contributors" },
+]
+dependencies = [
+  "pydantic>=2.8,<3",
+]
+
+[project.optional-dependencies]
+modal = [
+  "modal>=1.0,<2",
+]
+backend = [
+  "accelerate",
+  "fastapi[standard]",
+  "modal>=1.0,<2",
+  "peft",
+  "safetensors",
+  "torch",
+  "transformers",
+]
+unsloth = [
+  "bitsandbytes>=0.45.5,!=0.46.0,!=0.48.0; sys_platform == 'linux'",
+  "unsloth[base]",
+]
+export = [
+  "huggingface_hub",
+  "peft",
+  "safetensors",
+  "torch",
+  "transformers",
+]
+tutorials = [
+  "marimo>=0.21,<1",
+  "matplotlib",
+  "numpy",
+]
+dev = [
+  "pytest>=8",
+]
+
+[project.scripts]
+toy-modal = "toy_modal.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/toy_modal"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

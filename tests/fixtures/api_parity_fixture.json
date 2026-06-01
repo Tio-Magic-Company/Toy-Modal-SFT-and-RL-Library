@@ -1,0 +1,111 @@
+{
+  "exports": [
+    "APIFuture",
+    "RestClient",
+    "SamplingClient",
+    "ServiceClient",
+    "TrainingClient",
+    "TinkerError",
+    "types"
+  ],
+  "classes": {
+    "ServiceClient": {
+      "methods": {
+        "get_server_capabilities": [],
+        "get_server_capabilities_async": [],
+        "create_lora_training_client": ["base_model", "rank", "seed", "train_mlp", "train_attn", "train_unembed", "user_metadata"],
+        "create_lora_training_client_async": ["base_model", "rank", "seed", "train_mlp", "train_attn", "train_unembed", "user_metadata"],
+        "create_training_client_from_state": ["path", "user_metadata", "weights_access_token"],
+        "create_training_client_from_state_async": ["path", "user_metadata", "weights_access_token"],
+        "create_training_client_from_state_with_optimizer": ["path", "user_metadata", "weights_access_token"],
+        "create_training_client_from_state_with_optimizer_async": ["path", "user_metadata", "weights_access_token"],
+        "create_sampling_client": ["model_path", "base_model", "retry_config"],
+        "create_sampling_client_async": ["model_path", "base_model", "retry_config"],
+        "create_rest_client": []
+      }
+    },
+    "TrainingClient": {
+      "methods": {
+        "forward": ["data", "loss_fn", "loss_fn_config"],
+        "forward_async": ["data", "loss_fn", "loss_fn_config"],
+        "forward_backward": ["data", "loss_fn", "loss_fn_config"],
+        "forward_backward_async": ["data", "loss_fn", "loss_fn_config"],
+        "forward_backward_custom": ["data", "loss_fn", "loss_type_input"],
+        "forward_backward_custom_async": ["data", "loss_fn", "loss_type_input"],
+        "optim_step": ["adam_params"],
+        "optim_step_async": ["adam_params"],
+        "save_state": ["name", "ttl_seconds"],
+        "save_state_async": ["name", "ttl_seconds"],
+        "load_state": ["path", "weights_access_token"],
+        "load_state_async": ["path", "weights_access_token"],
+        "load_state_with_optimizer": ["path", "weights_access_token"],
+        "load_state_with_optimizer_async": ["path", "weights_access_token"],
+        "save_weights_for_sampler": ["name", "ttl_seconds"],
+        "save_weights_for_sampler_async": ["name", "ttl_seconds"],
+        "get_info": [],
+        "get_info_async": [],
+        "get_tokenizer": [],
+        "create_sampling_client": ["model_path", "retry_config"],
+        "create_sampling_client_async": ["model_path", "retry_config"],
+        "save_weights_and_get_sampling_client": ["name", "retry_config"],
+        "save_weights_and_get_sampling_client_async": ["name", "retry_config"]
+      }
+    },
+    "SamplingClient": {
+      "methods": {
+        "sample": ["prompt", "num_samples", "sampling_params", "include_prompt_logprobs", "topk_prompt_logprobs"],
+        "sample_async": ["prompt", "num_samples", "sampling_params", "include_prompt_logprobs", "topk_prompt_logprobs"],
+        "compute_logprobs": ["prompt"],
+        "compute_logprobs_async": ["prompt"],
+        "get_tokenizer": [],
+        "get_base_model": [],
+        "get_base_model_async": []
+      }
+    },
+    "RestClient": {
+      "methods": {
+        "get_training_run": ["training_run_id", "access_scope"],
+        "get_training_run_async": ["training_run_id", "access_scope"],
+        "get_training_run_by_tinker_path": ["tinker_path", "access_scope"],
+        "get_training_run_by_tinker_path_async": ["tinker_path", "access_scope"],
+        "get_weights_info_by_tinker_path": ["tinker_path"],
+        "get_weights_info_by_tinker_path_async": ["tinker_path"],
+        "list_training_runs": ["limit", "offset", "access_scope"],
+        "list_training_runs_async": ["limit", "offset", "access_scope"],
+        "list_checkpoints": ["training_run_id"],
+        "list_checkpoints_async": ["training_run_id"],
+        "get_checkpoint_archive_url": ["training_run_id", "checkpoint_id"],
+        "get_checkpoint_archive_url_async": ["training_run_id", "checkpoint_id"],
+        "delete_checkpoint": ["training_run_id", "checkpoint_id"],
+        "delete_checkpoint_async": ["training_run_id", "checkpoint_id"],
+        "delete_checkpoint_from_tinker_path": ["tinker_path"],
+        "delete_checkpoint_from_tinker_path_async": ["tinker_path"],
+        "get_checkpoint_archive_url_from_tinker_path": ["tinker_path"],
+        "get_checkpoint_archive_url_from_tinker_path_async": ["tinker_path"],
+        "publish_checkpoint_from_tinker_path": ["tinker_path"],
+        "publish_checkpoint_from_tinker_path_async": ["tinker_path"],
+        "unpublish_checkpoint_from_tinker_path": ["tinker_path"],
+        "unpublish_checkpoint_from_tinker_path_async": ["tinker_path"],
+        "set_checkpoint_ttl_from_tinker_path": ["tinker_path", "ttl_seconds"],
+        "set_checkpoint_ttl_from_tinker_path_async": ["tinker_path", "ttl_seconds"],
+        "list_user_checkpoints": ["limit", "offset"],
+        "list_user_checkpoints_async": ["limit", "offset"],
+        "get_session": ["session_id", "access_scope"],
+        "get_session_async": ["session_id", "access_scope"],
+        "list_sessions": ["limit", "offset", "access_scope"],
+        "list_sessions_async": ["limit", "offset", "access_scope"],
+        "get_sampler": ["sampler_id"],
+        "get_sampler_async": ["sampler_id"]
+      }
+    }
+  },
+  "types": {
+    "AdamParams": ["learning_rate", "beta1", "beta2", "eps", "weight_decay", "grad_clip_norm"],
+    "Checkpoint": ["checkpoint_id", "checkpoint_type", "time", "tinker_path", "toy_path", "size_bytes", "public", "expires_at"],
+    "ForwardBackwardOutput": ["loss_fn_output_type", "loss_fn_outputs", "loss", "metrics", "num_tokens", "gradient_id", "model_seq_id"],
+    "GetServerCapabilitiesResponse": ["supported_models", "supports_lora", "supports_full_finetune", "supports_sampling", "supports_importance_sampling", "max_batch_size", "transport", "trainer_engine", "sampler_engine", "backend_profile"],
+    "ImageChunk": ["type", "data", "format", "expected_tokens"],
+    "ImageAssetPointerChunk": ["type", "location", "format", "expected_tokens"],
+    "TensorData": ["data", "dtype", "shape", "sparse_crow_indices", "sparse_col_indices"]
+  }
+}
