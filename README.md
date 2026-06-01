@@ -82,8 +82,7 @@ The documentation and tutorial material is split into three top-level folders:
 | Path | Purpose |
 | --- | --- |
 | `docs/` | User documentation, Modal-backed examples, Marimo notebooks, and cookbook recipe scripts for `toy_modal`. |
-| `reference_docs/` | Checked-in reference snapshots for Modal docs, Tinker API docs, and original Tinker tutorials. |
-| `dev_notes/` | Private state-of-repo report, validation scripts, and validation reports. |
+
 
 Runtime code remains under `src/toy_modal/`:
 
