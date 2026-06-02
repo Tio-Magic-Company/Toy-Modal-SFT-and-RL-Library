@@ -15,17 +15,6 @@ The SDK surface, Modal `modal-direct` transport, deployed HTTP transport,
 PEFT trainer path, Transformers sampler path, HTTP gateway contract, cookbook
 framework, examples, and Marimo tutorial series are in place.
 
-Current evidence:
-
-- `PYTHONDONTWRITEBYTECODE=1 python -m pytest` has passed locally with the
-  no-credential unit suite.
-- The latest checked-in tiny-model Modal PEFT/Transformers `modal-direct`
-  baseline is
-  `dev_notes/validation_reports/modal-peft-20260527T163656Z/modal_parity_20260527T163730Z.json`
-  with 19 passes and 0 failures.
-
-Do not treat that baseline as evidence for large-model quality, performance,
-deployed HTTP gateway parity, or production artifact lifecycle behavior.
 
 ## Quickstart
 
